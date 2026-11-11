@@ -1,0 +1,48 @@
+# Базове — потрібне майже на кожному занятті
+torch
+torchvision
+opencv-python
+numpy>=2.0          # np.trapezoid (заняття 12, sim12.py)
+matplotlib
+ultralytics>=8.3.100   # з 8.3 — YOLO11, з 8.3.100 — YOLOE (заняття 6)
+transformers>=5.0    # з 4.56 — DINOv3 (заняття 5), з 5.0 — SAM 3 і Florence-2 без trust_remote_code (заняття 6)
+jupyterlab>=4
+ipywidgets>=8      # віджети для JupyterLab 4
+ipyevents>=2       # вибір цілі мишею (заняття 1 demo2, 5 demo1 і demo3, 6 demo1); 2.x — під JupyterLab 4
+python-pptx
+
+# Заняття 3 · оцінка руху та SLAM
+scipy              # розріджений розв'язувач графа поз (demo3); spearmanr у занятті 5 (demo2)
+open3d             # хмари точок і ICP (ДЗ 3); колеса є лише для Python 3.10–3.12
+rerun-sdk          # 3D-візуалізація траєкторій і хмар точок (demo1, demo2)
+panel              # інтерактивна панель злиття сенсорів (demo2)
+jupyter_bokeh      # щоб panel працював у ноутбуках VS Code
+kiss-icp           # лідарний еталон (demo3); на Intel-Mac збирається з sdist
+tqdm               # індикатори прогресу довгих блоків (demo3; заняття 5 demo3)
+evo                # опційно: evo_ape / evo_rpe для перевірки метрик з командного рядка
+
+# Заняття 5 · ViT та мультимодальні моделі
+open_clip_torch>=3.0   # CLIP (demo2), SigLIP 2 (demo2, demo3), RemoteCLIP, SkyCLIP (demo3)
+scikit-learn           # linear probe (demo1, demo2)
+faiss-cpu              # k-means добору міток (demo1), індекс і PQ (demo3)
+pandas
+gdown                  # VisDrone з Google Drive
+
+# Заняття 6 · zero-shot сегментація та OV-детекція
+pycocotools            # AP / AP_small і COCO RLE (demo2, demo3)
+lap>=0.5.12            # ByteTrack в ultralytics (demo3); без нього ultralytics доставляє його сам посеред прогону
+# SAM 2.1; scripts/setup.* ставлять SAM2_BUILD_CUDA=0 — без компіляції CUDA-розширення (воно лише заповнює дірки в масках)
+SAM-2 @ git+https://github.com/facebookresearch/sam2.git
+clip @ git+https://github.com/ultralytics/CLIP.git   # текстовий енкодер для YOLO-World
+
+# Заняття 9 · MOT та ReID
+# HOTA / DetA / AssA (demo1 §7, ДЗ); на PyPI офіційного пакета немає. Під numpy ≥ 1.24 його лагодить lessons/09-mot-reid/mdmt.py
+trackeval @ git+https://github.com/JonathonLuiten/TrackEval.git
+requests               # tools/fetch_mdmt.py — читає з архіву MDMT лише потрібні файли через HTTP Range
+
+# Окремими venv, бо конфліктують між собою:
+#   заняття 4, 11       — pycolmap
+#   заняття 7, 8        — diffusers, accelerate, peft, controlnet-aux
+#   заняття 10          — PyGObject (GStreamer), aiortc, av
+#   заняття 13, 14      — dvc[s3], tritonclient[all], grad-cam, fastapi
+#   заняття 15–17       — onnx, onnxruntime-gpu, openvino; tensorrt із JetPack/NGC
